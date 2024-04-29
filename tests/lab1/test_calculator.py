@@ -1,7 +1,5 @@
-import sys
 import unittest
-sys.path.append('../../src/lab1')
-from calculator import add, subtract, multiply, divide
+from src.lab1.calculator import add, subtract, multiply, divide
 
 class CalculatorTestCase(unittest.TestCase):
 
