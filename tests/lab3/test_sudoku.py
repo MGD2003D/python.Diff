@@ -1,5 +1,8 @@
 import unittest
+import os
 from src.lab3.sudoku import read_sudoku, solve, check_solution, generate_sudoku, get_row, get_col, get_block, find_empty_positions, find_possible_values
+current_dir = os.path.dirname(os.path.abspath(__file__))
+puzzle_path = os.path.join(current_dir, '../../src/lab3/puzzle1.txt')
 
 class TestSudoku(unittest.TestCase):
     def test_read_sudoku(self):
