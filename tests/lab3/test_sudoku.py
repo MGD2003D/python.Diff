@@ -1,19 +1,26 @@
+import os
 import unittest
 from src.lab3.sudoku import read_sudoku, solve, check_solution, generate_sudoku, get_row, get_col, get_block, find_empty_positions, find_possible_values
 
 class TestSudoku(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super(TestSudoku, cls).setUpClass()
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        cls.puzzle_path = os.path.join(current_dir, 'puzzle1.txt')
+
     def test_read_sudoku(self):
-        grid = read_sudoku("puzzle1.txt")
+        grid = read_sudoku(self.puzzle_path)
         self.assertEqual(len(grid), 9)
         self.assertEqual(len(grid[0]), 9)
 
     def test_solve(self):
-        grid = read_sudoku("puzzle1.txt")
+        grid = read_sudoku(self.puzzle_path)
         solution = solve(grid)
         self.assertTrue(check_solution(solution))
 
     def test_check_solution(self):
-        grid = read_sudoku("puzzle1.txt")
+        grid = read_sudoku(self.puzzle_path)
         solution = solve(grid)
         self.assertTrue(check_solution(solution))
 
@@ -43,7 +50,7 @@ class TestSudoku(unittest.TestCase):
         self.assertEqual(find_empty_positions(grid), (0, 2))
 
     def test_find_possible_values(self):
-        grid = read_sudoku("puzzle1.txt")
+        grid = read_sudoku(self.puzzle_path)
         empty_pos = find_empty_positions(grid)
         possible_values = find_possible_values(grid, empty_pos)
         self.assertIsInstance(possible_values, set)
